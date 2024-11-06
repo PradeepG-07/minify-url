@@ -1,13 +1,13 @@
-import "dotenv/config";
+import cleanedEnv from "./utils/cleanedEnv.js";
 import mongoose from "mongoose";
-import app from "./app";
+import app from "./app.js";
 
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(cleanedEnv.MONGODB_URL)
     .then((res) => {
-        app.listen(process.env.PORT, () => {
+        app.listen(cleanedEnv.PORT, () => {
             console.log("Server started at port ", process.env.PORT);
         })
     }).catch((error) => {
         console.log("Error while Connecting to MongoDB", error);
         process.exit(1);
-    })
+    });
