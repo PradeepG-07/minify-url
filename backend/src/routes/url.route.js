@@ -4,6 +4,6 @@ const urlRouter = express.Router();
 
 urlRouter.post("/minify", urlController.minify);
 
-urlRouter.get("/:miniUrlCode", urlController.redirectToOriginalUrl);
+urlRouter.get("/redirect/:miniUrlCode", urlController.redirectToOriginalUrl);
 
 export default urlRouter;

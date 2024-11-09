@@ -27,6 +27,7 @@ export async function minify(req, res, next) {
             res.status(200).json({
                 success: true,
                 message: "Mini url already exists.",
+                originalUrl,
                 miniUrl: existingUrl.miniUrl
             });
             return;
@@ -57,14 +58,17 @@ export async function minify(req, res, next) {
 }
 
 export async function redirectToOriginalUrl(req, res, next) {
-    const miniUrl = req.protocol + '://' + req.get('host') + req.originalUrl + req.params?.miniUrlCode;
+    const miniUrl = cleanedEnv.FRONTEND_URL + "/" + req.params?.miniUrlCode;
+
     try {
         //Check if it is a valid miniUrl already generated.
-        const response = UrlModel.findOne({
+        const response = await UrlModel.findOne({
             miniUrl
-        });
+        }).select("originalUrl miniUrl -_id");
+        console.log(response);
+
         if (!response) {
-            res.status(404).json({
+            res.status(400).json({
                 success: false,
                 message: "Invalid Mini URL."
             });

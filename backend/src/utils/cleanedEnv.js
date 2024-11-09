@@ -1,6 +1,6 @@
 import z from "zod";
 import "dotenv/config";
-import { envSchema } from "./zodSchemas";
+import { envSchema } from "./zodSchemas.js";
 
 
 const result = envSchema.safeParse(process.env);

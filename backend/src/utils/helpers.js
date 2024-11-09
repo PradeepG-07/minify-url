@@ -9,5 +9,3 @@ export function getRandomString(requiredStringLength = 6) {
 
     return output;
 }
-
-getRandomString(6)
