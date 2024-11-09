@@ -22,4 +22,21 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1", urlRouter);
 
+//Error Handler 
+app.use((err, req, res, next) => {
+    res.status(500).json({
+        success: false,
+        message: "Internal Server Error"
+    })
+})
+
+//Handling all Invalid requests
+app.use(function (req, res) {
+    res.status(404).json({
+        success: false,
+        message: '404 URL not found.',
+    });
+});
+
+
 export default app;
