@@ -9,7 +9,7 @@ export async function minify(req, res, next) {
     if (error) {
         res.status(422).json({
             success: false,
-            message: "Original Url Required",
+            message: error.errors[0].message,
         });
         return;
     }
@@ -65,7 +65,6 @@ export async function redirectToOriginalUrl(req, res, next) {
         const response = await UrlModel.findOne({
             miniUrl
         }).select("originalUrl miniUrl -_id");
-        console.log(response);
 
         if (!response) {
             res.status(400).json({
