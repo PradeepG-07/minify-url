@@ -1,8 +1,8 @@
-import React from 'react'
-
 const Footer = () => {
     return (
-        <div>Footer</div>
+        <div className="p-2 bg-blue-700 text-white text-center h-[6vh]">
+            &copy; 2024 | All Rights Reserved
+        </div>
     )
 }
 
