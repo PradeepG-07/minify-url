@@ -12,7 +12,7 @@ export default function TypingAnimation({ strings = ["Put your string here"] }) 
             startDelay: 100,
             typeSpeed: 40,
             backSpeed: 10,
-            backDelay: 200,
+            backDelay: 1000,
             smartBackspace: true,
             loop: true,
             showCursor: true,
@@ -23,7 +23,7 @@ export default function TypingAnimation({ strings = ["Put your string here"] }) 
         return () => {
             typed.destroy();
         };
-    }, []);
+    }, [strings]);
 
     return (
         <span ref={el}>Hello Developers</span>
