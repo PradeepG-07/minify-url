@@ -9,3 +9,9 @@ export const envSchema = z.object({
 export const urlBodyRequestSchema = z.object({
     originalUrl: z.string({ message: "Original Url is required." }).trim().url("Invalid Original Url"),
 });
+
+export const contactBodyRequestSchema = z.object({
+    email: z.string({ message: "Email address is required." }).email({ message: "Invalid Email address." }),
+    title: z.string({ message: "Title is required." }).trim().min(5, { message: "Title should contain minimum 5 characters." }),
+    message: z.string({ message: "Message is required." }).trim().min(5, { message: "Message should contain minimum 5 characters." })
+})
