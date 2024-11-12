@@ -7,7 +7,7 @@ export const envSchema = z.object({
 });
 
 export const urlBodyRequestSchema = z.object({
-    originalUrl: z.string({ message: "Original Url is required." }).trim().url("Invalid Original Url"),
+    longUrl: z.string({ message: "Long Url is required." }).trim().url("Invalid Long Url"),
 });
 
 export const contactBodyRequestSchema = z.object({

@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const urlSchema = new Schema({
-    originalUrl: {
+    longUrl: {
         type: String,
         required: true,
     },

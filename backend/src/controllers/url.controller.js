@@ -14,12 +14,12 @@ export async function minify(req, res, next) {
         return;
     }
     // Extracting url from parsed data
-    const originalUrl = data.originalUrl;
+    const longUrl = data.longUrl;
     try {
 
         //Check if url exist with the same url provided by user.
         const existingUrl = await UrlModel.findOne({
-            originalUrl
+            longUrl
         });
 
         //If url exists simply respond to the client with the existing mini url .
@@ -27,7 +27,7 @@ export async function minify(req, res, next) {
             res.status(200).json({
                 success: true,
                 message: "Mini url already exists.",
-                originalUrl,
+                longUrl,
                 miniUrl: existingUrl.miniUrl
             });
             return;
@@ -39,14 +39,14 @@ export async function minify(req, res, next) {
 
         //Insert into database
         await UrlModel.create({
-            originalUrl,
+            longUrl,
             miniUrl
         });
 
         //Responding back to client
         res.status(200).json({
             success: true,
-            originalUrl,
+            longUrl,
             miniUrl,
             message: "Mini url generated successfully."
         });
@@ -57,14 +57,14 @@ export async function minify(req, res, next) {
     }
 }
 
-export async function redirectToOriginalUrl(req, res, next) {
+export async function redirectToLongUrl(req, res, next) {
     const miniUrl = cleanedEnv.FRONTEND_URL + "/" + req.params?.miniUrlCode;
 
     try {
         //Check if it is a valid miniUrl already generated.
         const response = await UrlModel.findOne({
             miniUrl
-        }).select("originalUrl miniUrl -_id");
+        }).select("longUrl miniUrl -_id");
 
         if (!response) {
             res.status(400).json({
@@ -75,9 +75,9 @@ export async function redirectToOriginalUrl(req, res, next) {
         }
         res.status(200).json({
             success: true,
-            originalUrl: response.originalUrl,
+            longUrl: response.longUrl,
             miniUrl,
-            message: `Redirect to ${response.originalUrl}`
+            message: `Redirect to ${response.longUrl}`
         });
 
     } catch (error) {
