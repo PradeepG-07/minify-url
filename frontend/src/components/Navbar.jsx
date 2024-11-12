@@ -5,7 +5,7 @@ const Navbar = () => {
         return isActive ? "text-white underline underline-offset-4" : "";
     }
     return (
-        <nav className="flex justify-between items-center px-3 h-[10vh] bg-blue-900 text-slate-300">
+        <nav className="flex justify-between items-center px-3 h-[10vh] bg-blue-900 text-slate-300 sticky top-0">
             <div className="">
                 <Link to={"/"}><h1 className="font-bold text-2xl">Minify URL</h1></Link>
             </div>
