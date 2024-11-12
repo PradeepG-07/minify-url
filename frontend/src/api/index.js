@@ -8,8 +8,17 @@ const axiosInstance = axios.create({
     timeoutErrorMessage: "Request timed out."
 });
 
-export const sendMessage = (messageBody) => {
-    const response = asyncHandler(axiosInstance.post("/contact", messageBody));
+export const sendMessage = async (messageBody) => {
+    const response = await asyncHandler(axiosInstance.post("/contact", messageBody));
     return response;
 }
 
+export const generateMiniURL = async (longUrl) => {
+    const response = await asyncHandler(axiosInstance.post("/minify", { longUrl: longUrl }));
+    return response;
+}
+
+export const redirectToLongURL = async (miniUrl) => {
+    const response = await asyncHandler(axiosInstance.get(`/redirect/${miniUrl}`));
+    return response;
+}

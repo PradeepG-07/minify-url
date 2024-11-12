@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { sendMessage } from "../api";
 import { messageSchema } from "../utils/zodSchemas";
+import toast from "react-hot-toast";
 
 const Feedback = () => {
     const [isSendingMessage, setIsSendingMessage] = useState(false);
@@ -33,13 +34,11 @@ const Feedback = () => {
         const { success, message: responseMessage } = await sendMessage(cleanedFormData.data);
 
         if (success) {
-            // show Success Alert
-            console.log(responseMessage);
+            toast.success(responseMessage);
 
         }
         else {
-            // show error alert
-            console.log(responseMessage);
+            toast.error(responseMessage);
         }
 
         e.target.reset();
