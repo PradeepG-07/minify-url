@@ -1,11 +1,17 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { redirectToLongURL } from "../api";
+import toast from "react-hot-toast";
 
 const RedirectToLongURL = () => {
 
     const { miniUrl } = useParams();
+    //Using this variable to avoid rerender of the component in development mode
+    let hasRedirected = false;
+
     const redirect = async () => {
+        if (hasRedirected) return;
+        hasRedirected = true;
         const response = await redirectToLongURL(miniUrl);
 
         if (response.success) {
@@ -13,8 +19,9 @@ const RedirectToLongURL = () => {
             window.location.href = response.longUrl;
         }
         else {
+            toast.error(response.message);
             document.getElementById("errorMessageContainer").classList.remove("hidden");
-            document.getElementById("errorMessageContainer").classList.add("hidden");
+            document.getElementById("messageContainer").classList.add("hidden");
         }
     }
     useEffect(() => {
@@ -23,7 +30,7 @@ const RedirectToLongURL = () => {
 
     return (
         <div className="min-h-[84vh] items-center justify-center flex flex-col gap-2 md:gap-7 pt-3">
-            <div className="messageContainer">
+            <div id="messageContainer">
                 <h1 className="font-extrabold text-center text-5xl text-gray-800">Hang On Tight</h1>
                 <br />
                 <p className="text-center text-sm text-gray-800" id="message">We are fetching your URL..</p>
