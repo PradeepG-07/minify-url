@@ -79,4 +79,27 @@ describe("Testing api endpoints", () => {
         expect(redirectUrlResponse.status).toBe(200);
         expect(redirectUrlResponse.data.originalUrl).toBe(originalUrl);
     });
+
+    //Testing endpoints for contact message
+    test("Correct parameters passed for contact endpoint saves the message", async () => {
+        const title = "Test Title";
+        const email = "Test@test.com";
+        const message = "This is a test message";
+        const response = await handleAxiosPromise(axios.post(BACKEND_URL + "/contact", {
+            title,
+            email,
+            message
+        }));
+        expect(response.status).toBe(200);
+        expect(response.data.message).toBe("Message saved successfully.");
+    });
+    test("Missing Parameters should be rejected with status code of 422", async () => {
+        const email = "Test@test.com";
+        const message = "This is a test message";
+        const response = await handleAxiosPromise(axios.post(BACKEND_URL + "/contact", {
+            email,
+            message
+        }));
+        expect(response.status).toBe(422);
+    });
 });
