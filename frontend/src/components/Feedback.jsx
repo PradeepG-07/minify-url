@@ -47,20 +47,20 @@ const Feedback = () => {
     }
     return (
         <div className="text-gray-800">
-            <h1 className="text-3xl mx-auto font-bold text-pink-500 border-2 p-2 w-fit rounded border-pink-500">Contact Us</h1>
+            <h1 className="text-2xl sm:text-3xl mx-auto font-bold text-pink-500 border-2 p-2 w-fit rounded border-pink-500">Contact Us</h1>
             <br />
-            <form action="#" className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                <label htmlFor="email" className="text-xl cursor-pointer">Email: </label>
-                <input className="border-2 border-black rounded p-2 text-xl" type="text" name="email" id="email" autoComplete="on" />
+            <form action="#" className="flex flex-col gap-2 sm:gap-4" onSubmit={handleSubmit}>
+                <label htmlFor="email" className="text-base sm:text-xl cursor-pointer">Email: </label>
+                <input className="border-2 border-black rounded p-2 text-base sm:text-xl" type="text" name="email" id="email" autoComplete="on" />
                 <span className="text-red-400 text-sm" id="emailErrorMessage"></span>
-                <label htmlFor="title" className="text-xl cursor-pointer">Title: </label>
-                <input className="border-2 border-black rounded p-2 text-xl" type="text" name="title" id="title" />
+                <label htmlFor="title" className="text-base sm:text-xl cursor-pointer">Title: </label>
+                <input className="border-2 border-black rounded p-2 text-base sm:text-xl" type="text" name="title" id="title" />
                 <span className="text-red-400 text-sm" id="titleErrorMessage"></span>
-                <label htmlFor="message" className="text-xl cursor-pointer">Message: </label>
-                <textarea className="border-2 border-black rounded p-2 text-xl" name="message" id="message"></textarea>
-                <span className="text-red-400 text-sm" id="messageErrorMessage"></span>
-                <br />
-                <button type="submit" disabled={isSendingMessage ? true : false} className="px-4 py-2 rounded bg-amber-500 hover:bg-amber-600 text-white text-xl w-fit mx-auto">
+                <label htmlFor="message" className="text-base sm:text-xl cursor-pointer">Message: </label>
+                <textarea className="border-2 border-black rounded p-2 text-base sm:text-xl" name="message" id="message"></textarea>
+                <span className="text-red-400 text-xs sm:text-sm" id="messageErrorMessage"></span>
+
+                <button type="submit" disabled={isSendingMessage ? true : false} className="mt-4 px-4 py-2 rounded bg-amber-500 hover:bg-amber-600 text-white text-xl w-fit mx-auto">
                     {
                         isSendingMessage ? "Sending Message.." : "Send Message"
                     }

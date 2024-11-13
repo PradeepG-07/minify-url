@@ -14,16 +14,16 @@ const Home = () => {
         "Just a few clicks to a clean link!"
     ]
     return (
-        <div className="min-h-[84vh] items-center justify-center flex flex-col gap-2 md:gap-7 pt-3" style={{ backgroundColor: "#09709236" }}>
+        <div className="min-h-[80vh] px-4 items-center justify-center flex flex-col gap-2 md:gap-7 pt-3" style={{ backgroundColor: "#09709236" }}>
 
-            <div className="md:w-1/2 min-h-24">
-                <h1 className="text-5xl font-extrabold text-wrap text-center">
+            <div className="md:w-2/3 lg:w-1/2 sm:min-h-24">
+                <h1 className="text-4xl sm:text-5xl font-extrabold text-wrap text-center">
                     <span className="text-gray-800"><TypingAnimation strings={animatedLines} /></span>
                 </h1>
             </div>
             <div className="flex flex-col gap-2 md:gap-7 justify-center">
-                <p className="text-2xl font-bold text-gray">What are you waiting for start using short urls <span className="text-pink-500">for free..</span></p>
-                <Link className="w-fit mx-auto px-4 text-xl py-2 rounded bg-amber-600 hover:bg-amber-700 transition-all text-white" to={"/minify"}>Get Started</Link>
+                <p className="text-lg sm:text-2xl text-center font-bold text-gray">What are you waiting for start using short urls <span className="text-pink-500">for free..</span></p>
+                <Link className="w-fit mx-auto px-3 py-1 sm:px-4 text-lg sm:text-xl sm:py-2 rounded bg-amber-600 hover:bg-amber-700 transition-all text-white" to={"/minify"}>Get Started</Link>
             </div>
         </div>
     )
