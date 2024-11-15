@@ -29,16 +29,18 @@ const RedirectToLongURL = () => {
     }, []);
 
     return (
-        <div className="min-h-[80vh] items-center justify-center flex flex-col gap-2 md:gap-7 pt-3">
-            <div id="messageContainer">
+        <div className="min-h-[80vh] px-3 items-center justify-center flex flex-col gap-2 md:gap-7 pt-3">
+            <div className="px-3" id="messageContainer">
                 <h1 className="font-extrabold text-center text-4xl sm:text-5xl text-gray-800">Hang On Tight</h1>
                 <br />
-                <p className="text-center text-sm text-gray-800" id="message">We are fetching your URL..</p>
+                <p className="px-3 text-center text-sm text-gray-800" id="message">We are fetching your URL..</p>
             </div>
             <div className="hidden" id="errorMessageContainer">
-                <h1 className="font-extrabold text-center text-4xl sm:text-5xl text-balance text-gray-800">404 URL Not Found</h1>
-                <br />
-                <Link to={"/"} className="w-fit mx-auto px-4 text-xl py-2 rounded bg-amber-600 hover:bg-amber-700 transition-all text-white">Back to Home</Link>
+                <div className="flex flex-col gap-2 sm:gap-4 items-center justify-center">
+                    <h1 className="font-extrabold text-center text-4xl sm:text-5xl text-balance text-gray-800">404 URL Not Found</h1>
+                    <br />
+                    <Link to={"/"} className="w-fit mx-auto px-4 text-xl py-2 rounded bg-amber-600 hover:bg-amber-700 transition-all text-white">Back to Home</Link>
+                </div>
             </div>
         </div>
     )
