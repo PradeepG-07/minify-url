@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+    mongodb:
+        image: "mongo"
+        container_name: "mongodb"
+        ports:
+            - "27017:27017"
+        volumes:
+            - "/data/db:/data/db"
+    backend:
+        build: "./backend/"
+        container_name: "backend"
+        ports:
+            - "8000:8000"
+        environment:
+            - "PORT=8000"
+            - "FRONTEND_URL=http://localhost:5173"
+            # Why not this ? "FRONTEND_URL=http://frontend:5173"
+            # Solution: This is because the frontend url is being used as string by the cors package, not for network calls hence it is not resolved by the docker-compose. For the sake of cors we used localhost here.
+            - "MONGODB_URL=mongodb://mongodb:27017"
+            - "DB_NAME=minifyurl"
+        volumes:
+            - "./backend:/usr/src/app/"
+        depends_on:
+            - "mongodb"
+    frontend:
+        build: "./frontend/"
+        container_name: "frontend"
+        ports:
+            - "5173:5173"
+        volumes:
+            - "./frontend:/usr/src/app/"
+        environment:
+            - "VITE_BACKEND_URL=http://localhost:8000/api/v1"
+            # Why not this ? "VITE_BACKEND_URL=http://backend:8000/api/v1"
+            # Solution: https://stackoverflow.com/questions/77429444/docker-compose-not-resolving-service-name-between-my-frontend-and-backend-contai
+        depends_on:
+            - "backend"
+
