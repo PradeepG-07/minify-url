@@ -21,6 +21,7 @@ services:
             - "DB_NAME=minifyurl"
         volumes:
             - "./backend:/usr/src/app/"
+            - "backend_node_modules: /usr/src/app/node_modules"
         depends_on:
             - "mongodb"
     frontend:
@@ -30,6 +31,7 @@ services:
             - "5173:5173"
         volumes:
             - "./frontend:/usr/src/app/"
+            - "frontend_node_modules: /usr/src/app/node_modules"
         environment:
             - "VITE_BACKEND_URL=http://localhost:8000/api/v1"
             # Why not this ? "VITE_BACKEND_URL=http://backend:8000/api/v1"
